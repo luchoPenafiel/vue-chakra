@@ -1,3 +1,4 @@
+// Vendor
 import Vue from 'vue';
 import Chakra, { CThemeProvider, CReset } from '@chakra-ui/vue';
 
@@ -5,7 +6,11 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 
-Vue.use(Chakra);
+import customTheme from './constants/custom-theme.js';
+
+Vue.use(Chakra, {
+  extendTheme: customTheme,
+});
 
 Vue.config.productionTip = false;
 

@@ -9,13 +9,13 @@
       <form v-if="mode === 'signin'" @submit.prevent="onSignIn">
         <div class="form-control">
           <label for="email">Email</label>
-          <input type="email" name="email" id="email" v-model.trim="email.value" />
+          <c-input type="email" name="email" id="email" v-model.trim="email.value" />
           <p v-if="!email.isValid">Email is required.</p>
         </div>
 
         <div class="form-control">
           <label for="password">Password</label>
-          <input type="password" name="password" id="password" v-model.trim="password.value" />
+          <c-input type="password" name="password" id="password" v-model.trim="password.value" />
           <p v-if="!password.isValid">Password is required.</p>
         </div>
 
@@ -25,23 +25,23 @@
       <form v-else @submit.prevent="onSignUp">
         <div class="form-control">
           <label for="name">Name</label>
-          <input type="text" name="name" id="name" v-model.trim="name.value" />
+          <c-input type="text" name="name" id="name" v-model.trim="name.value" />
           <p v-if="!name.isValid">Your name is required.</p>
         </div>
         <div class="form-control">
           <label for="lastName">Last Name</label>
-          <input type="text" name="lastName" id="lastName" v-model.trim="lastName.value" />
+          <c-input type="text" name="lastName" id="lastName" v-model.trim="lastName.value" />
           <p v-if="!lastName.isValid">Your lastName is required.</p>
         </div>
         <div class="form-control">
           <label for="email">Email</label>
-          <input type="email" name="email" id="email" v-model.trim="email.value" />
+          <c-input type="email" name="email" id="email" v-model.trim="email.value" />
           <p v-if="!email.isValid">Email is required.</p>
         </div>
 
         <div class="form-control">
           <label for="password">Password</label>
-          <input type="password" name="password" id="password" v-model.trim="password.value" />
+          <c-input type="password" name="password" id="password" v-model.trim="password.value" />
           <p v-if="!password.isValid">Password is required.</p>
         </div>
 
@@ -55,9 +55,9 @@
 </template>
 
 <script>
-import { CBox, CButton } from '@chakra-ui/vue';
-
+import { CBox, CButton, CInput } from '@chakra-ui/vue';
 export default {
+  components: { CBox, CButton, CInput },
   data() {
     return {
       mode: 'signin',
@@ -82,7 +82,6 @@ export default {
       },
     };
   },
-  components: { CBox, CButton },
   methods: {
     validate() {
       this.formIsValid = true;
@@ -207,6 +206,7 @@ label {
   margin-bottom: 0.5rem;
 
   text-align: left;
+  font-size: 14px;
   font-weight: bold;
 }
 
