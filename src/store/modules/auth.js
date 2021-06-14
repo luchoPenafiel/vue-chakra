@@ -89,28 +89,21 @@ export default {
         return;
       }
 
-      console.log('actions:autoLogin 1');
-
       const tokenParsed = parseJWT(token);
       const today = Date.now();
 
       if (token && today > tokenParsed.exp) {
-        console.log('actions:autoLogin 2');
         context.commit('setUser', {
           token,
           tokenExpiration: tokenParsed.exp,
         });
       } else {
-        console.log('actions:autoLogin 3');
         localStorage.clear();
       }
     },
   },
   getters: {
     isAuth(state) {
-      console.log('getters:isAuth', state);
-      console.log('getters:isAuth: !!state', state.token);
-
       return state.token;
     },
   },

@@ -6,7 +6,7 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 
-import customTheme from './constants/custom-theme.js';
+import customTheme from './constants/custom-theme';
 
 Vue.use(Chakra, {
   extendTheme: customTheme,

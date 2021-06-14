@@ -1,6 +1,24 @@
 export default {
+  colors: {
+    blue: {
+      50: 'red',
+      100: '#d4e0ef',
+      200: '#a9c1df',
+      300: '#7da2ce',
+      400: '#5283be',
+      500: '#2764ae',
+      600: '#1f508b',
+      700: '#173c68',
+      800: '#102846',
+      900: '#081423',
+      950: '#040a11',
+    },
+  },
+  radii: {
+    md: '500px',
+  },
   components: {
-    Button: {
+    button: {
       baseStyle: {
         fontWeight: 'bold',
         textTransform: 'uppercase',
@@ -24,10 +42,10 @@ export default {
         outline: {
           border: '2px solid',
           borderColor: 'purple.500',
-          color: 'purple.500',
+          color: 'blue.50',
         },
         solid: {
-          bg: 'purple.500',
+          bg: 'blue.50',
           color: 'white',
         },
       },

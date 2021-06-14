@@ -2,7 +2,9 @@
   <div>
     <c-box>
       <div>
-        <c-button @click="setSignInMode" :class="{ outline: mode === 'signup' }">Sign in</c-button>
+        <c-button @click="setSignInMode" :class="{ outline: mode === 'signup' }" color="blue.50" bg="blue.50"
+          >Sign in</c-button
+        >
         <c-button @click="setSignUpMode" :class="{ outline: mode === 'signin' }">Sign up</c-button>
       </div>
 
@@ -115,7 +117,6 @@ export default {
       }
     },
     async onSignIn() {
-      console.log('asasfafasfafa');
       this.errorAuth = '';
       this.validate();
 
@@ -138,7 +139,6 @@ export default {
           this.errorAuth = 'Faild to sign in, try later.';
         }
       } catch (err) {
-        console.log('err', err);
         this.errorAuth = err.message || 'Faild to sign in, try later.';
       } finally {
         this.loading = false;
@@ -169,7 +169,6 @@ export default {
           this.errorAuth = 'Faild to sign up, try later.';
         }
       } catch (err) {
-        console.log('err', err);
         this.errorAuth = err.message || 'Faild to sign up, try later.';
       } finally {
         this.loading = false;
