@@ -2,9 +2,7 @@
   <div>
     <c-box>
       <div>
-        <c-button @click="setSignInMode" :class="{ outline: mode === 'signup' }" color="blue.50" bg="blue.50"
-          >Sign in</c-button
-        >
+        <c-button @click="setSignInMode" :class="{ outline: mode === 'signup' }">Sign in</c-button>
         <c-button @click="setSignUpMode" :class="{ outline: mode === 'signin' }">Sign up</c-button>
       </div>
 
@@ -17,7 +15,22 @@
 
         <div class="form-control">
           <label for="password">Password</label>
-          <c-input type="password" name="password" id="password" v-model.trim="password.value" />
+          <c-pseudoBox
+            as="input"
+            type="password"
+            name="password"
+            id="password"
+            v-model.trim="password.value"
+            placeholder="Focus me"
+            py="2"
+            px="4"
+            bg="gray.200"
+            color="gray.900"
+            border-color="transparent"
+            border-width="1px"
+            border-radius="12px"
+            :_focus="{ bg: 'white', borderColor: 'red.50' }"
+          />
           <p v-if="!password.isValid">Password is required.</p>
         </div>
 
@@ -57,9 +70,9 @@
 </template>
 
 <script>
-import { CBox, CButton, CInput } from '@chakra-ui/vue';
+import { CBox, CButton, CInput, CPseudoBox } from '@chakra-ui/vue';
 export default {
-  components: { CBox, CButton, CInput },
+  components: { CBox, CButton, CInput, CPseudoBox },
   data() {
     return {
       mode: 'signin',
