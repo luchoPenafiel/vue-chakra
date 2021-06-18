@@ -1,38 +1,20 @@
 <template>
   <div>
     <c-box>
-      <div>
+      <div class="switch-wrapper">
         <c-button @click="setSignInMode" :class="{ outline: mode === 'signup' }">Sign in</c-button>
         <c-button @click="setSignUpMode" :class="{ outline: mode === 'signin' }">Sign up</c-button>
       </div>
 
       <form v-if="mode === 'signin'" @submit.prevent="onSignIn">
-        <div class="form-control">
-          <label for="email">Email</label>
-          <c-input type="email" name="email" id="email" v-model.trim="email.value" />
-          <p v-if="!email.isValid">Email is required.</p>
-        </div>
+        <custom-input :name="email" :type="'email'" :label="'Email'" errorMessage="Your Email is required." />
 
-        <div class="form-control">
-          <label for="password">Password</label>
-          <c-pseudoBox
-            as="input"
-            type="password"
-            name="password"
-            id="password"
-            v-model.trim="password.value"
-            placeholder="Focus me"
-            py="2"
-            px="4"
-            bg="gray.200"
-            color="gray.900"
-            border-color="transparent"
-            border-width="1px"
-            border-radius="12px"
-            :_focus="{ bg: 'white', borderColor: 'red.50' }"
-          />
-          <p v-if="!password.isValid">Password is required.</p>
-        </div>
+        <custom-input
+          :name="password"
+          :type="'password'"
+          :label="'Password'"
+          errorMessage="Your password is required."
+        />
 
         <c-button type="submit">Sign in</c-button>
       </form>
@@ -70,9 +52,11 @@
 </template>
 
 <script>
-import { CBox, CButton, CInput, CPseudoBox } from '@chakra-ui/vue';
+import { CBox, CButton, CInput } from '@chakra-ui/vue';
+import CustomInput from '../Input/Input.vue';
+
 export default {
-  components: { CBox, CButton, CInput, CPseudoBox },
+  components: { CBox, CButton, CInput, CustomInput },
   data() {
     return {
       mode: 'signin',
@@ -84,6 +68,7 @@ export default {
         isValid: true,
       },
       password: {
+        title: 'password',
         value: '',
         isValid: true,
       },
@@ -208,10 +193,6 @@ form {
   border-radius: 12px;
 }
 
-.form-control {
-  margin: 0.5rem 0;
-}
-
 label {
   display: block;
 
@@ -222,19 +203,7 @@ label {
   font-weight: bold;
 }
 
-input,
-textarea {
-  display: block;
-  width: 100%;
-  font: inherit;
-  border: 1px solid #ccc;
-  padding: 0.15rem;
-}
-
-input:focus,
-textarea:focus {
-  border-color: #3d008d;
-  background-color: #faf6ff;
-  outline: none;
+.switch-wrapper {
+  text-align: center;
 }
 </style>
