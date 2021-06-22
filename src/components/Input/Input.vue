@@ -12,15 +12,16 @@
           v-model.trim="name.value"
           width="100"
           pr="10"
-          pl="2"
-          py="2"
+          pl="4"
+          py="3"
           bg="white"
           color="blue.500"
           border-color="#ececec"
           border-width="1.5px"
           border-radius="12px"
+          font-weight="semibold"
           flex="1"
-          :_focus="{ outline: 'none', borderColor: 'blue.500' }"
+          :_focus="{ outline: 'none', borderColor: 'blue.500', boxShadow: '0px 0px 2px #2764ae' }"
         />
       </c-flex>
       <c-icon class="icon" v-if="!name.isValid" name="warning" size="24px" color="blue.50" />
@@ -39,17 +40,22 @@ export default {
 </script>
 
 <style scoped>
+.form-control {
+  margin-bottom: 18px;
+}
+
 label {
+  display: block;
+  padding-left: 8px;
+  margin-bottom: 8px;
+
+  color: rgb(162, 170, 182);
   font-size: 14px;
-  color: #2764ae;
+  font-weight: 600;
 }
 
 p {
   font-size: 14px;
-}
-
-.form-control {
-  margin: 0.5rem 0;
 }
 
 .wrapper {
@@ -63,7 +69,7 @@ p {
 
 .icon {
   position: absolute;
-  top: 9px;
-  right: 8px;
+  top: 13px;
+  right: 10px;
 }
 </style>
