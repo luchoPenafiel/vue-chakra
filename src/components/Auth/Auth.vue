@@ -1,62 +1,72 @@
 <template>
   <div>
-    <c-box>
-      <div class="switch-wrapper">
-        <c-button @click="setSignInMode" :class="{ outline: mode === 'signup' }">Sign in</c-button>
-        <c-button @click="setSignUpMode" :class="{ outline: mode === 'signin' }">Sign up</c-button>
+    <c-box aria-label="Formulario de registro o de inicio de sesión.">
+      <div class="switch-wrapper" aria-lebel="Cambia entre inicio de sesión y registro de usuario.">
+        <c-button @click="setSignInMode" :class="{ outline: mode === 'signup' }">Inicia Sesión</c-button>
+        <c-button @click="setSignUpMode" :class="{ outline: mode === 'signin' }">Regístrate</c-button>
       </div>
 
-      <form v-if="mode === 'signin'" @submit.prevent="onSignIn">
-        <custom-input :name="email" :type="'email'" :label="'Email'" errorMessage="Your Email is required." />
+      <form v-if="mode === 'signin'" @submit.prevent="onSignIn" aria-lebel="Formulario de inicio de sesión">
+        <custom-input :name="email" :type="'email'" :label="'Email'" errorMessage="Debes ingresar tu email." />
 
         <custom-input
           :name="password"
           :type="'password'"
-          :label="'Password'"
-          errorMessage="Your password is required."
+          :label="'Contraseña'"
+          errorMessage="Debes ingresar una contraseña."
         />
 
-        <c-button type="submit">Sign in</c-button>
+        <c-button type="submit">Ingresar</c-button>
       </form>
 
-      <form v-else @submit.prevent="onSignUp">
-        <div class="form-control">
-          <label for="name">Name</label>
-          <c-input type="text" name="name" id="name" v-model.trim="name.value" />
-          <p v-if="!name.isValid">Your name is required.</p>
-        </div>
-        <div class="form-control">
-          <label for="lastName">Last Name</label>
-          <c-input type="text" name="lastName" id="lastName" v-model.trim="lastName.value" />
-          <p v-if="!lastName.isValid">Your lastName is required.</p>
-        </div>
-        <div class="form-control">
-          <label for="email">Email</label>
-          <c-input type="email" name="email" id="email" v-model.trim="email.value" />
-          <p v-if="!email.isValid">Email is required.</p>
-        </div>
+      <form v-else @submit.prevent="onSignUp" aria-lebel="Formulario de registro de usuario">
+        <custom-input
+          :type="'text'"
+          :name="name"
+          :label="'Nombre'"
+          v-model.trim="name.value"
+          errorMessage="Debes ingresar un nombre."
+        />
 
-        <div class="form-control">
-          <label for="password">Password</label>
-          <c-input type="password" name="password" id="password" v-model.trim="password.value" />
-          <p v-if="!password.isValid">Password is required.</p>
-        </div>
+        <custom-input
+          :type="'text'"
+          :name="lastName"
+          :label="'Apellido'"
+          errorMessage="Debes ingresar tu apellido."
+          v-model.trim="lastName.value"
+        />
+
+        <custom-input
+          :type="'email'"
+          :name="email"
+          v-model.trim="email.value"
+          :label="'Email'"
+          errorMessage="Debes ingresar tu email."
+        />
+
+        <custom-input
+          :type="'password'"
+          :name="password"
+          v-model.trim="password.value"
+          :label="'Contraseña'"
+          errorMessage="Debes ingresar tu contraseña."
+        />
 
         <p v-if="!!errorAuth">{{ errorAuth }}</p>
 
-        <c-button type="submit">Sign up</c-button>
+        <c-button type="submit">Registrarse</c-button>
       </form>
-      <p v-if="loading">Loading...</p>
+      <p v-if="loading">Cargando...</p>
     </c-box>
   </div>
 </template>
 
 <script>
-import { CBox, CButton, CInput } from '@chakra-ui/vue';
+import { CBox, CButton } from '@chakra-ui/vue';
 import CustomInput from '../Input/Input.vue';
 
 export default {
-  components: { CBox, CButton, CInput, CustomInput },
+  components: { CBox, CButton, CustomInput },
   data() {
     return {
       mode: 'signin',

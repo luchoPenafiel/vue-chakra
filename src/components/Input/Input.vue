@@ -49,7 +49,7 @@ label {
   padding-left: 8px;
   margin-bottom: 8px;
 
-  color: rgb(162, 170, 182);
+  color: rgb(88, 88, 88);
   font-size: 14px;
   font-weight: 600;
 }
