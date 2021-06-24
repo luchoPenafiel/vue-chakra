@@ -74,6 +74,7 @@ export default {
       formIsValid: false,
       errorAuth: '',
       email: {
+        title: 'email',
         value: '',
         isValid: true,
       },
@@ -83,10 +84,12 @@ export default {
         isValid: true,
       },
       name: {
+        title: 'name',
         value: '',
         isValid: true,
       },
       lastName: {
+        title: 'lastname',
         value: '',
         isValid: true,
       },
@@ -215,5 +218,9 @@ label {
 
 .switch-wrapper {
   text-align: center;
+}
+
+.switch-wrapper button {
+  margin: 0 6px;
 }
 </style>

@@ -1,10 +1,12 @@
 <template>
   <div class="form-control">
-    <label :for="name.title" :class="{ isInvalid: !name.isValid }">{{ label }}</label>
-    <div class="wrapper">
+    <s-label :for="name.title" :class="{ isInvalid: !name.isValid }">{{ label }}</s-label>
+    <s-wrapper>
       <c-flex as="div">
         <c-pseudoBox
           as="input"
+          aria-required="true"
+          :aria-invalid="!name.isValid"
           :class="{ isInvalid: !name.isValid }"
           :type="type"
           :name="name.title"
@@ -25,41 +27,24 @@
         />
       </c-flex>
       <c-icon class="icon" v-if="!name.isValid" name="warning" size="24px" color="blue.50" />
-    </div>
-    <p class="isInvalid" v-if="!name.isValid">{{ errorMessage }}</p>
+    </s-wrapper>
+    <s-hint :isValid="name.isValid" v-if="!name.isValid">{{ errorMessage }}</s-hint>
   </div>
 </template>
 
 <script>
 import { CPseudoBox, CFlex } from '@chakra-ui/vue';
+import { SWrapper, SLabel, SHint } from './Styles';
 
 export default {
   props: ['name', 'type', 'errorMessage', 'label'],
-  components: { CPseudoBox, CFlex },
+  components: { CPseudoBox, CFlex, SWrapper, SLabel, SHint },
 };
 </script>
 
 <style scoped>
 .form-control {
   margin-bottom: 18px;
-}
-
-label {
-  display: block;
-  padding-left: 8px;
-  margin-bottom: 8px;
-
-  color: rgb(88, 88, 88);
-  font-size: 14px;
-  font-weight: 600;
-}
-
-p {
-  font-size: 14px;
-}
-
-.wrapper {
-  position: relative;
 }
 
 .isInvalid {

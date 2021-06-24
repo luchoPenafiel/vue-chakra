@@ -1,6 +1,6 @@
 <template>
   <div>
-    <the-title>Welcome</the-title>
+    <the-title>¡Hola!</the-title>
     <auth></auth>
   </div>
 </template>
